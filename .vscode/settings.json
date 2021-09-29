@@ -1,0 +1,31 @@
+{
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 22,
+  "editor.letterSpacing": 0.5,
+  "editor.fontWeight": "400",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 5,
+  "editor.cursorBlinking": "solid",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#60a6e7", //侧边栏背景色
+    "statusBarItem.hoverBackground": "#2ecc71", //选择颜色
+    "statusBar.foreground": "#fff", //侧边栏前景色
+    "activityBar.background": "#60a6e7", //侧边工具栏
+    "activityBar.inactiveForeground": "#fff",
+    "activityBar.foreground": "#ecf0f1", //侧边工具栏图标
+    "titleBar.inactiveBackground": "#60a6e7" //非活动区域的颜色
+  },
+  "workbench.colorTheme": "Default Dark+",
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontSize": 14,
+  "editor.tokenColorCustomizations": {
+    // "comments": "#da4d83fd" // 注释
+    // "keywords": "#0a0", // 关键字
+    // "variables": "#f00", // 变量名
+    // "strings": "#e2d75dbd", // 字符串
+    // "functions": "#5b99fcc9", // 函数名
+    // "numbers": "#AE81FF" // 数字
+  },
+  "editor.wordWrap": "bounded",
+  "diffEditor.wordWrap": "on"
+}
