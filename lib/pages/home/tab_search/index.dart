@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 17:21:01
- * @LastEditTime: 2021-09-30 12:35:25
+ * @LastEditTime: 2021-09-30 14:18:20
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /haokezu_flutter/lib/pages/home/tab_search/index.dart
@@ -10,6 +10,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 import 'package:goodhouse/widget/room_list_item_widget.dart';
+import 'package:goodhouse/widget/search_bar/index.dart';
 
 import 'data_list.dart';
 
@@ -25,8 +26,13 @@ class _IndexSearchState extends State<IndexSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("搜索组件"),
-          backgroundColor: Colors.blue,
+          title: SearchBar(
+            showLocation: true,
+            onSearch: () {
+              Navigator.of(context).pushNamed('search');
+            },
+          ),
+          backgroundColor: Colors.white,
         ),
         body: Column(
           children: [

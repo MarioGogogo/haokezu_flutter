@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 17:33:55
- * @LastEditTime: 2021-09-30 11:38:57
+ * @LastEditTime: 2021-09-30 14:36:17
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /haokezu_flutter/lib/pages/home/tab_index/index.dart
@@ -11,6 +11,7 @@
 import 'package:flutter/material.dart';
 import 'package:goodhouse/pages/home/info/index.dart';
 import 'package:goodhouse/widget/common_swiper.dart';
+import 'package:goodhouse/widget/search_bar/index.dart';
 
 import 'index_navigator.dart';
 import 'index_recommend.dart';
@@ -27,8 +28,13 @@ class _TabIndexState extends State<TabIndex> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TabIndex组件"),
-        backgroundColor: Colors.blue,
+        title: SearchBar(
+          showLocation: true,
+          onSearch: () {
+            Navigator.of(context).pushNamed('search');
+          },
+        ),
+        backgroundColor: Colors.white,
       ),
       body: ListView(
         children: [
