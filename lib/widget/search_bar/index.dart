@@ -3,7 +3,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-30 13:39:03
- * @LastEditTime: 2021-09-30 14:53:44
+ * @LastEditTime: 2021-09-30 15:21:28
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /haokezu_flutter/lib/widget/search_bar/index.dart
@@ -40,19 +40,19 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  String _searchWord = ' ';
+  String _searchWord = '';
   late TextEditingController _controller;
+  late FocusNode _focusNode; //创建变量 然后实例化
   Function? _onClean() {
     _controller.clear();
-    print("清除");
-    print(_searchWord);
     setState(() {
-      _searchWord = '123123 ';
+      _searchWord = '';
     });
   }
 
   @override
   void initState() {
+    _focusNode = FocusNode();
     _controller = TextEditingController(text: widget.inputValue);
     super.initState();
   }
@@ -92,6 +92,14 @@ class _SearchBarState extends State<SearchBar> {
                 borderRadius: BorderRadius.circular(18)),
             padding: EdgeInsets.only(left: 8),
             child: TextField(
+              focusNode: _focusNode,
+              onTap: () {
+                //如果是搜索页则需要判断 是否取消失去焦点事件
+                if (widget.onSearchSubmit == null) {
+                  _focusNode.unfocus();
+                }
+                widget.onSearch!();
+              },
               textInputAction: TextInputAction.search,
               onSubmitted: widget.onSearchSubmit,
               controller: _controller,
@@ -119,7 +127,7 @@ class _SearchBarState extends State<SearchBar> {
                     child: Icon(
                       Icons.clear,
                       size: 24,
-                      color: _searchWord == "" ? Colors.white : Colors.grey,
+                      color: _searchWord == "" ? Colors.white70 : Colors.grey,
                     ),
                   )),
             ),
@@ -131,7 +139,9 @@ class _SearchBarState extends State<SearchBar> {
                 "取消",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
-            )
+            ),
+          if (widget.showLocation != null)
+            Image.asset("static/icons/widget_search_bar_map.png")
         ],
       ),
     );
