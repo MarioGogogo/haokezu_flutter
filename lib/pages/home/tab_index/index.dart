@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 17:33:55
- * @LastEditTime: 2021-09-30 10:41:57
+ * @LastEditTime: 2021-09-30 11:38:57
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /haokezu_flutter/lib/pages/home/tab_index/index.dart
@@ -9,6 +9,7 @@
  */
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:goodhouse/pages/home/info/index.dart';
 import 'package:goodhouse/widget/common_swiper.dart';
 
 import 'index_navigator.dart';
@@ -34,8 +35,7 @@ class _TabIndexState extends State<TabIndex> {
           CommonSwiper(),
           IndexNavigator(),
           IndexRecomment(),
-          Padding(padding: EdgeInsets.only(top: 8.0)),
-          Text("TabIndex组件"),
+          Info(),
         ],
       ),
     );
