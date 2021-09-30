@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-30 12:28:53
- * @LastEditTime: 2021-09-30 12:34:55
+ * @LastEditTime: 2021-09-30 13:18:05
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /haokezu_flutter/lib/widget/room_list_item_widget.dart
@@ -9,6 +9,8 @@
  */
 import 'package:flutter/material.dart';
 import 'package:goodhouse/pages/home/tab_search/data_list.dart';
+
+import 'common_tag.dart';
 
 class RoomListItemWidget extends StatelessWidget {
   final RoomListItemData data;
@@ -46,7 +48,9 @@ class RoomListItemWidget extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const Text("wrap组件占位"),
+                  Wrap(
+                    children: data.tags.map((item) => CommonTag(item)).toList(),
+                  ),
                   Text(
                     '${data.price} 元/月 ',
                     style: const TextStyle(
