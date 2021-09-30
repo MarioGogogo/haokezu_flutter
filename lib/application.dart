@@ -1,10 +1,10 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 15:10:27
- * @LastEditTime: 2021-09-29 22:39:26
+ * @LastEditTime: 2021-09-30 11:07:51
  * @LastEditors: MarioGo
  * @Description: 
- * @FilePath: /goodhouse/lib/application.dart
+ * @FilePath: /haokezu_flutter/lib/application.dart
  * 可以输入预定的版权声明、个性签名、空行等
  */
 
@@ -21,7 +21,7 @@ class Application extends StatelessWidget {
     final router = FluroRouter();
     Routes.configureRoutes(router);
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      theme: ThemeData(primarySwatch: Colors.blue),
       // home: const LoginPage(),
       onGenerateRoute: router.generator,
     );

@@ -1,10 +1,10 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 22:52:21
- * @LastEditTime: 2021-09-29 23:15:59
+ * @LastEditTime: 2021-09-30 09:23:52
  * @LastEditors: MarioGo
  * @Description: 文件描述
- * @FilePath: /goodhouse/lib/pages/home/tab_index/index_navigator.dart
+ * @FilePath: /haokezu_flutter/lib/pages/home/tab_index/index_navigator.dart
  * 专有的组件和 公共的组件分开
  */
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class IndexNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 6, bottom: 6),
+      padding: const EdgeInsets.only(top: 6.0, bottom: 6.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: indexNavigatorItemList
@@ -33,7 +33,7 @@ class IndexNavigator extends StatelessWidget {
                       ),
                       Text(
                         item.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 14),
                       )
                     ],
