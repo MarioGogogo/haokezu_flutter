@@ -17,7 +17,7 @@
   },
   "workbench.colorTheme": "Default Dark+",
   "editor.fontFamily": "Cascadia Code",
-  "editor.fontSize": 14,
+  "editor.fontSize": 16,
   "editor.tokenColorCustomizations": {
     // "comments": "#da4d83fd" // 注释
     // "keywords": "#0a0", // 关键字
