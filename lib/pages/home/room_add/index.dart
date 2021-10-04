@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-01 10:21:24
- * @LastEditTime: 2021-10-04 14:54:42
+ * @LastEditTime: 2021-10-04 17:41:34
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/home/room_add/index.dart
@@ -16,6 +16,7 @@ import 'package:goodhouse/widget/common_image_pick.dart';
 import 'package:goodhouse/widget/common_radio_form_item.dart';
 import 'package:goodhouse/widget/common_select_form_item.dart';
 import 'package:goodhouse/widget/common_title.dart';
+import 'package:goodhouse/widget/room_appliance.dart';
 
 class RoomAddPage extends StatefulWidget {
   RoomAddPage({Key? key}) : super(key: key);
@@ -144,6 +145,12 @@ class _RoomAddPageState extends State<RoomAddPage> {
             ),
           ),
           CommonTitle(title: '房屋配置'),
+          RoomAppliance(
+            //子组件传给父组件的事件
+            onChange: (List<RoomApplianceItem> value) {
+              // print("父级接受了子节点传来的::: $value");
+            },
+          ),
           CommonTitle(title: '房屋描述'),
           Container(
             margin: EdgeInsets.only(bottom: 150),

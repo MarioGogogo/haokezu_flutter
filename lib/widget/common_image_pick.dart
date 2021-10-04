@@ -27,10 +27,13 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
   final ImagePicker _picker = ImagePicker();
   _pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
     if (null == image) return;
+    //bug:这里点击选择相册会闪退
     setState(() {
       files = files..add(image);
     });
+    print("files :::: $files");
   }
 
   @override
@@ -55,39 +58,33 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
       ),
     );
 
-    Widget wrapper(String imageUri) {
-      // return Container();
-      // return Image.file(
-      //   ImageUri,
-      //   width: width,
-      //   height: height,
-      //   fit: BoxFit.cover,
-      // );
-      // return Semantics(
-      //   child: ListView.builder(
-      //     key: UniqueKey(),
-      //     itemBuilder: (context, imageUri) {
-      //       return Semantics(
-      //         child: Image.file(File(files[imageUri].path)),
-      //       );
-      //     },
-      //     itemCount: files.length,
-      //   ),
-      // );
-      print("imageurl : $imageUri");
-      return Image.file(
-        imageUri,
-        height: height,
-        width: width,
-        fit: BoxFit.cover,
+    Widget wrapper(int index) {
+      return Stack(
+        overflow: Overflow.visible,
+        children: <Widget>[
+          Image.file(File(files[index].path),
+              width: width, height: height, fit: BoxFit.cover),
+          Positioned(
+              right: -20,
+              top: -20,
+              child: IconButton(
+                onPressed: () {
+                  //删除图片点击事件
+                  print("删除图片");
+                },
+                icon: Icon(Icons.delete_forever_outlined),
+                color: Colors.blue,
+              ))
+        ],
       );
     }
 
-    List<Widget> list = defautImages.map((item) => wrapper(item)).toList()
-      ..add(addButton);
+    List<Widget> list = List.generate(files.length, (index) => wrapper(index))
+        .toList()
+          ..add(addButton);
 
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.only(left: 10),
       child: Wrap(
         spacing: 10,
         runSpacing: 10,
