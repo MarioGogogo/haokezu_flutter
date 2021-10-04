@@ -1,12 +1,3 @@
-/*
- * @Author: MarioGo
- * @Date: 2021-10-04 11:11:53
- * @LastEditTime: 2021-10-04 11:43:35
- * @LastEditors: MarioGo
- * @Description: 文件描述
- * @FilePath: /goodhouse/lib/widget/common_image_pick.dart
- * 可以输入预定的版权声明、个性签名、空行等
- */
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -34,10 +25,9 @@ class CommonImagePicker extends StatefulWidget {
 class _CommonImagePickerState extends State<CommonImagePicker> {
   List<XFile> files = [];
   final ImagePicker _picker = ImagePicker();
-  //根据图片生成路径地址
   _pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image == null) return;
+    if (null == image) return;
     setState(() {
       files = files..add(image);
     });
@@ -47,7 +37,6 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
   Widget build(BuildContext context) {
     var width = (MediaQuery.of(context).size.width - 10.0 * 4) / 3;
     var height = width / imageWidgetHeightRatio;
-    //生成图片添加按钮
     Widget addButton = GestureDetector(
       onTap: () {
         _pickImage();
@@ -56,39 +45,53 @@ class _CommonImagePickerState extends State<CommonImagePicker> {
       child: Container(
         width: width,
         height: height,
-        color: Colors.blueGrey[50],
+        color: Colors.grey,
         child: Center(
-          child: Icon(Icons.add_a_photo),
+          child: Text(
+            '+',
+            style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+          ),
         ),
       ),
     );
-    //图片预览组件
-    Widget wrapper_1(String imageUrl) {
-      return Image.network(imageUrl,
-          width: width, height: height, fit: BoxFit.cover);
-    }
 
-    Widget wrapper(XFile imageUri) {
-      return Semantics(
-        child: ListView.builder(
-          key: UniqueKey(),
-          itemBuilder: (context, imageUri) {
-            return Semantics(
-              child: Image.file(File(files[imageUri].path)),
-            );
-          },
-          itemCount: files.length,
-        ),
+    Widget wrapper(String imageUri) {
+      // return Container();
+      // return Image.file(
+      //   ImageUri,
+      //   width: width,
+      //   height: height,
+      //   fit: BoxFit.cover,
+      // );
+      // return Semantics(
+      //   child: ListView.builder(
+      //     key: UniqueKey(),
+      //     itemBuilder: (context, imageUri) {
+      //       return Semantics(
+      //         child: Image.file(File(files[imageUri].path)),
+      //       );
+      //     },
+      //     itemCount: files.length,
+      //   ),
+      // );
+      print("imageurl : $imageUri");
+      return Image.file(
+        imageUri,
+        height: height,
+        width: width,
+        fit: BoxFit.cover,
       );
     }
 
+    List<Widget> list = defautImages.map((item) => wrapper(item)).toList()
+      ..add(addButton);
+
     return Container(
-      padding: EdgeInsets.only(left: 10),
+      padding: EdgeInsets.all(10),
       child: Wrap(
         spacing: 10,
         runSpacing: 10,
-        children: defautImages.map((item) => wrapper_1(item)).toList()
-          ..add(addButton),
+        children: list,
       ),
     );
   }

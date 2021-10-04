@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-01 10:21:24
- * @LastEditTime: 2021-10-04 11:27:52
+ * @LastEditTime: 2021-10-04 14:54:42
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/home/room_add/index.dart
@@ -32,6 +32,9 @@ class _RoomAddPageState extends State<RoomAddPage> {
   //radio
   int rentType = 0;
   int decorationType = 0;
+  var titleController = TextEditingController();
+  var descController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +130,32 @@ class _RoomAddPageState extends State<RoomAddPage> {
           CommonTitle(title: '房屋图像'),
           CommonImagePicker(
             onChange: (List<File> value) {},
+          ),
+          CommonTitle(title: '房屋标题'),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              controller: titleController,
+              // maxLength: 2,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: '请输入标题，例如（整租，精装，小区名，2室）',
+              ),
+            ),
+          ),
+          CommonTitle(title: '房屋配置'),
+          CommonTitle(title: '房屋描述'),
+          Container(
+            margin: EdgeInsets.only(bottom: 150),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              controller: descController,
+              maxLines: 10,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: '请输入房屋描述',
+              ),
+            ),
           ),
         ],
       ),
