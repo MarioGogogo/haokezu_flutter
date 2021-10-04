@@ -1,15 +1,18 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-01 10:21:24
- * @LastEditTime: 2021-10-01 12:04:30
+ * @LastEditTime: 2021-10-04 11:27:52
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/home/room_add/index.dart
  * 可以输入预定的版权声明、个性签名、空行等
  */
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:goodhouse/widget/common_floating_button.dart';
 import 'package:goodhouse/widget/common_form_item.dart';
+import 'package:goodhouse/widget/common_image_pick.dart';
 import 'package:goodhouse/widget/common_radio_form_item.dart';
 import 'package:goodhouse/widget/common_select_form_item.dart';
 import 'package:goodhouse/widget/common_title.dart';
@@ -122,6 +125,9 @@ class _RoomAddPageState extends State<RoomAddPage> {
                 });
               }),
           CommonTitle(title: '房屋图像'),
+          CommonImagePicker(
+            onChange: (List<File> value) {},
+          ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

@@ -1,13 +1,14 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-01 11:52:09
- * @LastEditTime: 2021-10-01 11:52:10
+ * @LastEditTime: 2021-10-04 11:01:03
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/widget/common_select_form_item.dart
  * 可以输入预定的版权声明、个性签名、空行等
  */
 import 'package:flutter/material.dart';
+import 'package:goodhouse/utils/common_pick/index.dart';
 // import 'package:goodhouse/utils/common_picker/index.dart';
 import 'package:goodhouse/widget/common_form_item.dart';
 
@@ -31,20 +32,21 @@ class CommonSelectFormItem extends StatelessWidget {
         label: label,
         contentBuilder: (context) {
           return GestureDetector(
-            behavior: HitTestBehavior.translucent,
+            behavior: HitTestBehavior.translucent, //扩大点击区域范围
             onTap: () {
-              // var result = CommonPicker.showPicker(
-              //   context: context,
-              //   options: options,
-              //   value: value,
-              // );
-              // result.then((selectedValue) {
-              //   if (value != selectedValue &&
-              //       selectedValue != null &&
-              //       onChange != null) {
-              //     onChange(selectedValue);
-              //   }
-              // });
+              //pick组件底部弹窗
+              var result = CommonPicker.showPicker(
+                context: context,
+                options: options,
+                value: value,
+              );
+              result.then((selectedValue) {
+                if (value != selectedValue &&
+                    selectedValue != null &&
+                    onChange != null) {
+                  onChange(selectedValue); //返回给父组件事件调用
+                }
+              });
             },
             child: Container(
               height: 40.0,
