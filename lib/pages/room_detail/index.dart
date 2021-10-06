@@ -1,25 +1,126 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 15:42:31
- * @LastEditTime: 2021-09-29 15:51:54
+ * @LastEditTime: 2021-10-06 22:37:28
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/room_detail/index.dart
  * 可以输入预定的版权声明、个性签名、空行等
  */
 import 'package:flutter/material.dart';
+import 'package:goodhouse/widget/common_swiper.dart';
+import 'package:goodhouse/widget/common_tag.dart';
+import 'package:goodhouse/widget/common_title.dart';
 
-class RoomDetailPage extends StatelessWidget {
-  final String? roomId;
+import 'data.dart';
 
-  const RoomDetailPage({Key? key, this.roomId}) : super(key: key);
+var bottomButtonTextStyle = TextStyle(fontSize: 20.0, color: Colors.white);
+
+class RoomDetailPage extends StatefulWidget {
+  final String roomId;
+
+  const RoomDetailPage({Key? key, required this.roomId}) : super(key: key);
+
+  @override
+  _RoomDetailPageState createState() => _RoomDetailPageState();
+}
+
+class _RoomDetailPageState extends State<RoomDetailPage> {
+  RoomDetailData? data;
+  bool isLike = false;
+  bool showAllText = false;
+  @override
+  void initState() {
+    data = defaultData;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (null == data) return Container();
+    bool showTextTool = data!.subTitle!.length > 100;
     return Scaffold(
-        appBar: AppBar(title: Text("详情带ID,$roomId")),
-        body: Column(
-          children: [Text("详情带参数访问")],
-        ));
+      appBar: AppBar(
+        // title: Text('roomId:${widget.roomId}'),
+        title: Text(data!.title!),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.share),
+              onPressed: () {
+                // Share.share('https://baidu.com');
+              }),
+        ],
+      ),
+      body: Stack(
+        children: [
+          ListView(
+            children: [
+              CommonSwiper(),
+              CommonTitle(title: data!.title!),
+              Container(
+                padding: EdgeInsets.only(left: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      data!.price.toString(),
+                      style: TextStyle(fontSize: 20, color: Colors.pink),
+                    ),
+                    Text(
+                      ' 元/月',
+                      style: TextStyle(fontSize: 16, color: Colors.pink),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                child: Wrap(
+                  spacing: 2,
+                  children: data!.tags!.map((item) => CommonTag(item)).toList(),
+                ),
+              ),
+              Divider(
+                color: Colors.grey,
+                indent: 20,
+                endIndent: 20,
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                child: Wrap(
+                  runSpacing: 10,
+                  children: [
+                    BaseInfoItem(content: '面积：${data!.size}平方米'),
+                    BaseInfoItem(content: '楼层：${data!.floor}'),
+                    BaseInfoItem(content: '房型：${data!.roomType}'),
+                    BaseInfoItem(content: '装修：精装'),
+                  ],
+                ),
+              ),
+              CommonTitle(title: '房屋配置'),
+              CommonTitle(title: '房屋概况'),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 小组件
+class BaseInfoItem extends StatelessWidget {
+  final String content;
+
+  const BaseInfoItem({Key? key, required this.content}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        content,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+      ),
+      width: (MediaQuery.of(context).size.width - 3 * 10) / 2,
+    );
   }
 }
