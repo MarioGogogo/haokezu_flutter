@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 15:42:31
- * @LastEditTime: 2021-10-06 22:37:28
+ * @LastEditTime: 2021-10-15 23:46:30
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/room_detail/index.dart
@@ -38,7 +40,9 @@ class _RoomDetailPageState extends State<RoomDetailPage> {
   @override
   Widget build(BuildContext context) {
     if (null == data) return Container();
+    //如果文字过多不展示全部
     bool showTextTool = data!.subTitle!.length > 100;
+
     return Scaffold(
       appBar: AppBar(
         // title: Text('roomId:${widget.roomId}'),
@@ -98,7 +102,49 @@ class _RoomDetailPageState extends State<RoomDetailPage> {
                 ),
               ),
               CommonTitle(title: '房屋配置'),
+              RoomApplianceList(
+                list: [],
+              ),
               CommonTitle(title: '房屋概况'),
+              Container(
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data!.subTitle ?? '暂无房屋概况',
+                      maxLines: showAllText ? null : 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        showTextTool
+                            ? GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    showAllText = !showAllText;
+                                  });
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(showAllText ? '收起' : '展开'),
+                                    Icon(showAllText
+                                        ? Icons.keyboard_arrow_up
+                                        : Icons.keyboard_arrow_down),
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                        Text('举报'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              CommonTitle(title: '猜你喜欢'),
+              Container(
+                height: 100,
+              ),
             ],
           )
         ],

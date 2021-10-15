@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, sized_box_for_whitespace
+
 /*
  * @Author: MarioGo
  * @Date: 2021-10-04 17:05:16
- * @LastEditTime: 2021-10-04 17:35:48
+ * @LastEditTime: 2021-10-15 23:52:50
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/widget/room_appliance.dart
@@ -89,6 +91,51 @@ class _RoomApplianceState extends State<RoomAppliance> {
                       ),
                     ))
                 .toList()),
+      ),
+    );
+  }
+}
+
+class RoomApplianceList extends StatefulWidget {
+  final List<String> list;
+
+  const RoomApplianceList({Key? key, required this.list}) : super(key: key);
+
+  @override
+  _RoomApplianceListState createState() => _RoomApplianceListState();
+}
+
+//房屋配置列表
+class _RoomApplianceListState extends State<RoomApplianceList> {
+  @override
+  Widget build(BuildContext context) {
+    var showList =
+        _dataList.where((item) => widget.list.contains(item.title)).toList();
+    if (showList.isEmpty) {
+      return Container(
+        padding: EdgeInsets.only(left: 10),
+        child: Text('暂无房源配置信息'),
+      );
+    }
+    return Container(
+      child: Wrap(
+        runSpacing: 30.0,
+        children: showList
+            .map((item) => Container(
+                  width: MediaQuery.of(context).size.width / 5,
+                  child: Column(children: <Widget>[
+                    Icon(
+                        //字体图标的使用
+                        IconData(item.iconPoint, fontFamily: Config.CommonIcon),
+                        size: 40.0),
+                    Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(item.title),
+                    ),
+                    // CommonCheckButton(item.isChecked)
+                  ]),
+                ))
+            .toList(),
       ),
     );
   }
