@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 /*
  * @Author: MarioGo
  * @Date: 2021-10-04 17:17:39
- * @LastEditTime: 2021-10-04 17:17:39
+ * @LastEditTime: 2021-10-29 19:38:50
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/widget/common_check_button.dart

@@ -3,7 +3,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-04 17:05:16
- * @LastEditTime: 2021-10-15 23:52:50
+ * @LastEditTime: 2021-10-29 20:11:14
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/widget/room_appliance.dart
@@ -96,6 +96,7 @@ class _RoomApplianceState extends State<RoomAppliance> {
   }
 }
 
+// 房屋配置
 class RoomApplianceList extends StatefulWidget {
   final List<String> list;
 
@@ -105,12 +106,13 @@ class RoomApplianceList extends StatefulWidget {
   _RoomApplianceListState createState() => _RoomApplianceListState();
 }
 
-//房屋配置列表
 class _RoomApplianceListState extends State<RoomApplianceList> {
   @override
   Widget build(BuildContext context) {
+    // 从datalist中找到对应数据
     var showList =
         _dataList.where((item) => widget.list.contains(item.title)).toList();
+
     if (showList.isEmpty) {
       return Container(
         padding: EdgeInsets.only(left: 10),

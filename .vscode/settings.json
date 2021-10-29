@@ -1,7 +1,7 @@
 {
   "editor.fontLigatures": true,
   "editor.lineHeight": 22,
-  "editor.letterSpacing": 0.5,
+  "editor.letterSpacing": 0.6,
   "editor.fontWeight": "400",
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 5,
@@ -16,7 +16,7 @@
     "titleBar.inactiveBackground": "#60a6e7" //非活动区域的颜色
   },
   "workbench.colorTheme": "Default Dark+",
-  "editor.fontFamily": "Cascadia Code",
+  // "editor.fontFamily": "JetBrains Mono-Regular",
   "editor.fontSize": 16,
   "editor.tokenColorCustomizations": {
     // "comments": "#da4d83fd" // 注释

@@ -3,16 +3,18 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-09-29 15:42:31
- * @LastEditTime: 2021-10-15 23:46:30
+ * @LastEditTime: 2021-10-29 21:05:02
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/room_detail/index.dart
  * 可以输入预定的版权声明、个性签名、空行等
  */
 import 'package:flutter/material.dart';
+import 'package:goodhouse/pages/home/info/index.dart';
 import 'package:goodhouse/widget/common_swiper.dart';
 import 'package:goodhouse/widget/common_tag.dart';
 import 'package:goodhouse/widget/common_title.dart';
+import 'package:goodhouse/widget/room_appliance.dart';
 
 import 'data.dart';
 
@@ -102,9 +104,7 @@ class _RoomDetailPageState extends State<RoomDetailPage> {
                 ),
               ),
               CommonTitle(title: '房屋配置'),
-              RoomApplianceList(
-                list: [],
-              ),
+              RoomApplianceList(list: data!.applicances ?? []),
               CommonTitle(title: '房屋概况'),
               Container(
                 padding: EdgeInsets.only(left: 10, right: 10),
@@ -142,11 +142,67 @@ class _RoomDetailPageState extends State<RoomDetailPage> {
                 ),
               ),
               CommonTitle(title: '猜你喜欢'),
+              Info(),
+              // 防止底部遮挡
               Container(
-                height: 100,
+                height: 40,
               ),
             ],
-          )
+          ),
+          Positioned(
+            width: MediaQuery.of(context).size.width,
+            height: 100.0,
+            bottom: 0,
+            child: Row(children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isLike = !isLike;
+                  });
+                },
+                child: Container(
+                    width: 60,
+                    height: 50,
+                    margin: EdgeInsets.only(right: 10),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            isLike ? Icons.star : Icons.star_border,
+                            size: 24,
+                            color: isLike ? Colors.green : Colors.black,
+                          ),
+                          Text(isLike ? "已收藏" : "收藏")
+                        ])),
+              ),
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 50.0,
+                        margin: EdgeInsets.only(right: 5.0),
+                        decoration: BoxDecoration(
+                            color: Colors.cyan,
+                            borderRadius: BorderRadius.circular(6.0)),
+                        child: Center(
+                          child: Text('联系房东', style: bottomButtonTextStyle),
+                        ),
+                      ))),
+              Expanded(
+                  child: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        height: 50.0,
+                        margin: EdgeInsets.only(right: 5.0),
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(6.0)),
+                        child: Center(
+                          child: Text('预约看房', style: bottomButtonTextStyle),
+                        ),
+                      ))),
+            ]),
+          ),
         ],
       ),
     );

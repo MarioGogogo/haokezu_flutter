@@ -1,7 +1,7 @@
 /*
  * @Author: MarioGo
  * @Date: 2021-10-06 22:16:42
- * @LastEditTime: 2021-10-06 22:16:42
+ * @LastEditTime: 2021-10-29 20:15:29
  * @LastEditors: MarioGo
  * @Description: 文件描述
  * @FilePath: /goodhouse/lib/pages/room_detail/data.dart
@@ -48,7 +48,7 @@ var defaultData = RoomDetailData(
     price: 3000,
     oriented: ['南'],
     roomType: '三室',
-    applicances: ['衣柜', '洗衣机'],
+    applicances: ['衣柜', '洗衣机', "暖气", "电视"],
     tags: ["近地铁", "集中供暖", "新上", "随时看房"],
     houseImgs: [
       'http://ww3.sinaimg.cn/large/006y8mN6ly1g6e2tdgve1j30ku0bsn75.jpg',
